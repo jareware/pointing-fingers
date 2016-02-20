@@ -1,0 +1,26 @@
+{
+  "name": "pointing-fingers",
+  "version": "1.0.0",
+  "description": "Simple tool for tracking changes to an upstream API as part of your test suite",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jareware/pointing-fingers.git"
+  },
+  "keywords": [
+    "unit",
+    "testing",
+    "mocha",
+    "json",
+    "api"
+  ],
+  "author": "Jarno Rantanen <jarno@jrw.fi>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jareware/pointing-fingers/issues"
+  },
+  "homepage": "https://github.com/jareware/pointing-fingers"
+}
