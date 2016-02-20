@@ -4,7 +4,7 @@
   "description": "Simple tool for tracking changes to an upstream API as part of your test suite",
   "main": "index.js",
   "scripts": {
-    "test": "mocha *.spec.js"
+    "test": "mocha --timeout 10000 *.spec.js"
   },
   "repository": {
     "type": "git",
@@ -23,10 +23,13 @@
     "url": "https://github.com/jareware/pointing-fingers/issues"
   },
   "homepage": "https://github.com/jareware/pointing-fingers",
-  "devDependencies": {
+  "dependencies": {
     "axios": "^0.9.1",
+    "json-stable-stringify": "^1.0.1",
+    "lodash": "^4.5.0"
+  },
+  "devDependencies": {
     "chai": "^3.5.0",
-    "lodash": "^4.5.0",
     "mocha": "^2.4.5"
   }
 }
