@@ -4,7 +4,7 @@
   "description": "Simple tool for tracking changes to an upstream API as part of your test suite",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha *.spec.js"
   },
   "repository": {
     "type": "git",
@@ -22,5 +22,11 @@
   "bugs": {
     "url": "https://github.com/jareware/pointing-fingers/issues"
   },
-  "homepage": "https://github.com/jareware/pointing-fingers"
+  "homepage": "https://github.com/jareware/pointing-fingers",
+  "devDependencies": {
+    "axios": "^0.9.1",
+    "chai": "^3.5.0",
+    "lodash": "^4.5.0",
+    "mocha": "^2.4.5"
+  }
 }
