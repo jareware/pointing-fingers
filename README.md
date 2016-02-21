@@ -43,7 +43,13 @@ describe('GitHub API', () => {
       'headers.date' // ^ ditto
     ],
     transforms: [ // these are invoked with the response object to allow arbitrary checks/ignores (defaults to [])
-      res => res.status = (res.status >= 400 && res.status < 500) // ensure it's 4xx, but allow small changes
+      res => res.status = (res.status >= 400 && res.status < 500) // ensure it's 4xx, but tolerate small changes
+      /*
+      // transforms which throw an Error are ignored, so it's safe to traverse/iterate complex objects without
+      // littering the transform function with key existence checks. also, the res object is always an isolated
+      // clone, so in-place mutation is fine.
+      res => res.data.Teams.forEach(x => x.TeamRankingPoints = isNumber(x.TeamRankingPoints)),
+      */
     ],
     headers: { // these are attached to outgoing requests (defaults to {})
       'X-Api-Key': process.env.MY_SECRET_KEY
