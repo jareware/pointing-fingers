@@ -12,7 +12,7 @@ TODO
 
 ## Examples
 
-This is an example that uses all available options:
+This is an example Mocha test that uses all available options:
 
 ```js
 /* eslint-env mocha */
@@ -22,29 +22,29 @@ import { testUpstreamChanges } from 'pointing-fingers'; // @see https://github.c
 
 describe('GitHub API', () => {
 
-    testUpstreamChanges({
-        learn: false,
-        fixtures: 'test/fixtures/',
-        runner: it,
-        assert: assert.deepEqual,
-        placeholder: '(IGNORED IN TEST SUITE)',
-        ignores: [
-            'data.documentation_url',
-            'headers.content-length',
-            'headers.date'
-        ],
-        transforms: [
-            res => res.status = (res.status >= 400 && res.status < 500)
-        ],
-        headers: {
-            'X-Api-Key': process.env.MY_SECRET_KEY
-        },
-        method: 'GET',
-        base: 'https://api.github.com',
-        urls: [
-            '/user'
-        ]
-    });
+  testUpstreamChanges({
+    learn: false,
+    fixtures: 'test/fixtures/',
+    runner: it,
+    assert: assert.deepEqual,
+    placeholder: '(IGNORED IN TEST SUITE)',
+    ignores: [
+      'data.documentation_url',
+      'headers.content-length',
+      'headers.date'
+    ],
+    transforms: [
+      res => res.status = (res.status >= 400 && res.status < 500)
+    ],
+    headers: {
+      'X-Api-Key': process.env.MY_SECRET_KEY
+    },
+    method: 'GET',
+    base: 'https://api.github.com',
+    urls: [
+      '/user'
+    ]
+  });
   
 });
 ```
@@ -53,41 +53,41 @@ Running this test will request `GET https://api.github.com/user`, which yields t
 
 ```json
 {
-    "data": {
-        "documentation_url": "https://developer.github.com/v3",
-        "message": "Requires authentication"
-    },
-    "headers": {
-        "access-control-allow-origin": "*",
-        "connection": "close",
-        "content-length": "91",
-        "content-type": "application/json; charset=utf-8",
-        "date": "Sun, 21 Feb 2016 10:50:27 GMT",
-        "server": "GitHub.com"
-    },
-    "status": 401,
-    "statusText": "Unauthorized"
+  "data": {
+    "documentation_url": "https://developer.github.com/v3",
+    "message": "Requires authentication"
+  },
+  "headers": {
+    "access-control-allow-origin": "*",
+    "connection": "close",
+    "content-length": "91",
+    "content-type": "application/json; charset=utf-8",
+    "date": "Sun, 21 Feb 2016 10:50:27 GMT",
+    "server": "GitHub.com"
+  },
+  "status": 401,
+  "statusText": "Unauthorized"
 }
 ```
 
-And by setting `learn: true`, the following file will be written to `./test/fixtures/user.json`:
+By setting `learn: true`, the following file will be written to `./test/fixtures/user.json`:
 
 ```json
 {
-    "data": {
-        "documentation_url": "(IGNORED IN TEST SUITE)",
-        "message": "Requires authentication"
-    },
-    "headers": {
-        "access-control-allow-origin": "*",
-        "connection": "close",
-        "content-length": "(IGNORED IN TEST SUITE)",
-        "content-type": "application/json; charset=utf-8",
-        "date": "(IGNORED IN TEST SUITE)",
-        "server": "GitHub.com"
-    },
-    "status": true,
-    "statusText": "Unauthorized"
+  "data": {
+    "documentation_url": "(IGNORED IN TEST SUITE)",
+    "message": "Requires authentication"
+  },
+  "headers": {
+    "access-control-allow-origin": "*",
+    "connection": "close",
+    "content-length": "(IGNORED IN TEST SUITE)",
+    "content-type": "application/json; charset=utf-8",
+    "date": "(IGNORED IN TEST SUITE)",
+    "server": "GitHub.com"
+  },
+  "status": true,
+  "statusText": "Unauthorized"
 }
 ```
 
@@ -95,7 +95,7 @@ Then, you can set `learn: false`, commit your test file and JSON fixtures to ver
 
 ![mocha-success](mocha-success.png)
 
-If at some point in the future GitHub suddenly changes their charset, you'll see:
+If at some point in the future GitHub suddenly changes their API, you'll be notified with:
 
 ![mocha-failure](mocha-failure.png)
 
