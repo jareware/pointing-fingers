@@ -57,6 +57,8 @@ function testUpstreamChanges(options) {
 
     function test(res) {
 
+      if (_.isError(res)) throw res;
+
       var actual = _.omit(res, 'config');
 
       opt('ignores').forEach(function(ignore) {
@@ -67,22 +69,23 @@ function testUpstreamChanges(options) {
 
       opt('transforms').forEach(function(transform) {
         try {
-          transform(res);
+          transform(actual);
         } catch (e) {}
       });
 
       if (opt('learn')) {
-        fs.writeFileSync(filename(opt('url')), toString(actual));
+        fs.writeFileSync(filename(), toString(actual));
       } else {
-        var expected = JSON.parse(fs.readFileSync(filename(opt('url'))));
+        var expected = JSON.parse(fs.readFileSync(filename()));
         opt('assert')(actual, expected);
       }
 
     }
 
-    function filename(url) {
+    function filename() {
       return opt('fixtures')
-        + url
+        + (opt('method') !== defaults.method ? opt('method') + '_' : '')
+        + opt('url')
           .replace(/^\//, '')
           .replace(/[^a-zA-Z0-9-]/g, '_')
           .replace(/_+/g, '_')
