@@ -22,29 +22,29 @@ import { testUpstreamChanges } from 'pointing-fingers'; // @see https://github.c
 
 describe('GitHub API', () => {
 
-  testUpstreamChanges({
-    learn: false,
-    fixtures: 'test/fixtures/',
-    runner: it,
-    assert: assert.deepEqual,
-    placeholder: '(IGNORED IN TEST SUITE)',
-    ignores: [
-      'data.documentation_url',
-      'headers.content-length',
-      'headers.date'
-    ],
-    transforms: [
-      res => res.status = (res.status >= 400 && res.status < 500)
-    ],
-    headers: {
-      'X-Api-Key': process.env.MY_SECRET_KEY
-    },
-    method: 'GET',
-    base: 'https://api.github.com',
-    urls: [
-      '/user'
-    ]
-  });
+    testUpstreamChanges({
+        learn: false,
+        fixtures: 'test/fixtures/',
+        runner: it,
+        assert: assert.deepEqual,
+        placeholder: '(IGNORED IN TEST SUITE)',
+        ignores: [
+            'data.documentation_url',
+            'headers.content-length',
+            'headers.date'
+        ],
+        transforms: [
+            res => res.status = (res.status >= 400 && res.status < 500)
+        ],
+        headers: {
+            'X-Api-Key': process.env.MY_SECRET_KEY
+        },
+        method: 'GET',
+        base: 'https://api.github.com',
+        urls: [
+            '/user'
+        ]
+    });
   
 });
 ```
