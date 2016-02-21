@@ -22,48 +22,69 @@ function defaultAssert(actual, expected) {
   }
 }
 
-function testUpstreamChanges(opt) {
+var defaults = {
+  urls: [],
+  runner: defaultRunner,
+  base: '',
+  method: 'GET',
+  headers: {},
+  ignores: [],
+  placeholder: null,
+  transforms: [],
+  learn: false,
+  assert: defaultAssert,
+  fixtures: '/dev/null/'
+};
 
-  return Promise.all((opt.urls || []).map(function(url) {
+function testUpstreamChanges(options) {
 
-    return (opt.runner || defaultRunner)(url, function() {
+  return Promise.all((options.urls || []).map(function(url) {
+
+    return opt('runner')(opt('url'), function() {
       return axios({
-        url: (opt.base || '') + url,
-        method: opt.method || 'GET',
-        headers: opt.headers || {}
+        url: opt('base') + opt('url'),
+        method: opt('method'),
+        headers: opt('headers')
       }).then(test, test);
     });
+
+    function opt(name) {
+      if (name === 'url' && _.isString(url)) return url;
+      if (url[name]) return url[name];
+      if (options[name]) return options[name];
+      return defaults[name];
+    }
 
     function test(res) {
 
       var actual = _.omit(res, 'config');
 
-      (opt.ignores || []).forEach(function(ignore) {
+      opt('ignores').forEach(function(ignore) {
         if (_.has(actual, ignore)) {
-          _.set(actual, ignore, opt.placeholder || null);
+          _.set(actual, ignore, opt('placeholder'));
         }
       });
 
-      (opt.transforms || []).forEach(function(transform) {
+      opt('transforms').forEach(function(transform) {
         try {
           transform(res);
         } catch (e) {}
       });
 
-      if (opt.learn) {
-        fs.writeFileSync(filename(url), toString(actual));
+      if (opt('learn')) {
+        fs.writeFileSync(filename(opt('url')), toString(actual));
       } else {
-        var expected = JSON.parse(fs.readFileSync(filename(url)));
-        (opt.assert || defaultAssert)(actual, expected);
+        var expected = JSON.parse(fs.readFileSync(filename(opt('url'))));
+        opt('assert')(actual, expected);
       }
 
     }
 
     function filename(url) {
-      return (opt.fixtures || '/dev/null/')
+      return opt('fixtures')
         + url
           .replace(/^\//, '')
-          .replace(/[^a-zA-Z0-9]/g, '_')
+          .replace(/[^a-zA-Z0-9-]/g, '_')
           .replace(/_+/g, '_')
         + '.json';
     }

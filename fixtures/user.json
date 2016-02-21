@@ -1,0 +1,29 @@
+{
+    "data": {
+        "documentation_url": "https://developer.github.com/v3",
+        "message": "Requires authentication"
+    },
+    "headers": {
+        "access-control-allow-credentials": "true",
+        "access-control-allow-origin": "*",
+        "access-control-expose-headers": "ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval",
+        "connection": "close",
+        "content-length": "91",
+        "content-security-policy": "default-src 'none'",
+        "content-type": "application/json; charset=utf-8",
+        "date": "IGNORED IN TEST SUITE",
+        "server": "GitHub.com",
+        "status": "401 Unauthorized",
+        "strict-transport-security": "max-age=31536000; includeSubdomains; preload",
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "deny",
+        "x-github-media-type": "github.v3",
+        "x-github-request-id": "IGNORED IN TEST SUITE",
+        "x-ratelimit-limit": "60",
+        "x-ratelimit-remaining": true,
+        "x-ratelimit-reset": "IGNORED IN TEST SUITE",
+        "x-xss-protection": "1; mode=block"
+    },
+    "status": 401,
+    "statusText": "Unauthorized"
+}
