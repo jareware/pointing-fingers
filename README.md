@@ -127,3 +127,13 @@ If at some point in the future GitHub suddenly changes their API, you'll be noti
 This should give you an idea of what parts of your application you should check for compatibility with the upstream API changes. Once you're done, set `learn: true`, re-run the test suite, set `learn: false`, commit changed fixtures to version control, and you're back to:
 
 ![mocha-success](mocha-success.png)
+
+## Acknowledgements
+
+[Powered by the Chilicorn](http://futurice.com/blog/sponsoring-free-time-open-source-activities)
+
+![chilicorn](chilicorn.png)
+
+## Licence
+
+[MIT](https://opensource.org/licenses/MIT)
