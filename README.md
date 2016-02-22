@@ -128,12 +128,10 @@ This should give you an idea of what parts of your application you should check 
 
 ![mocha-success](mocha-success.png)
 
-## Acknowledgements
-
-[Powered by the Chilicorn](http://futurice.com/blog/sponsoring-free-time-open-source-activities)
-
-![chilicorn](chilicorn.png)
-
 ## Licence
 
 [MIT](https://opensource.org/licenses/MIT)
+
+## Acknowledgements
+
+[![chilicorn](chilicorn.png)](http://futurice.com/blog/sponsoring-free-time-open-source-activities)
