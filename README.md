@@ -8,10 +8,10 @@ Software doesn't exist in a vacuum, and many apps depend on one or more upstream
 
 This tool offers a sensible middle ground, and a convenient workflow for:
 
- * Documenting the upstream API format, as not all API's are perfectly documented
- * Versioning that documentation, as API's tend to change over time
- * Automatically alerting you to API changes, as sometimes upstream vendors won't
- * Explicitly accepting those API changes, as your app will likely need to be changed accordingly
+ * **Documenting the upstream API format**, as not all API's are perfectly documented
+ * **Versioning that documentation**, as API's tend to change over time
+ * **Automatically alerting you to API changes**, as sometimes upstream vendors won't
+ * **Explicitly accepting those API changes**, as your app will likely need to be changed accordingly
 
 ## Installation
 
